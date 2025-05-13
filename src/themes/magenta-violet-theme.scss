@@ -1,0 +1,18 @@
+@use "@angular/material" as mat;
+
+$magenta-primary: mat.define-palette(mat.$purple-palette, 500);
+$magenta-accent: mat.define-palette(mat.$deep-purple-palette, A200);
+
+$magenta-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: dark,
+      primary: $magenta-primary,
+      accent: $magenta-accent,
+    ),
+  )
+);
+
+.magenta-violet-theme {
+  @include mat.all-component-themes($magenta-theme);
+}

@@ -1,0 +1,20 @@
+.card {
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card-header {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.card-content {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+  padding-right: 10px;
+}

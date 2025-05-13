@@ -1,0 +1,18 @@
+@use "@angular/material" as mat;
+
+$rose-primary: mat.define-palette(mat.$red-palette);
+$rose-accent: mat.define-palette(mat.$pink-palette);
+
+$rose-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: $rose-primary,
+      accent: $rose-accent,
+    ),
+  )
+);
+
+.rose-red-theme {
+  @include mat.all-component-themes($rose-theme);
+}

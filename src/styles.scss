@@ -1,4 +1,85 @@
-/* You can add global styles to this file, and also import other style files */
+@use "@angular/material" as mat;
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* You can add global styles to this file, and also import other style files */
+html {
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: mat.$violet-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+.cyan-orange-theme {
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: mat.$cyan-palette,
+        tertiary: mat.$orange-palette,
+      ),
+    )
+  );
+}
+
+.azure-blue-theme {
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: mat.$blue-palette,
+        tertiary: mat.$blue-palette,
+      ),
+    )
+  );
+}
+
+.rose-red-theme {
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: mat.$spring-green-palette,
+        //tertiary: mat.$red-palette,
+      ),
+    )
+  );
+}
+
+.magenta-green-theme {
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: mat.$magenta-palette,
+        tertiary: mat.$green-palette,
+      ),
+    )
+  );
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  //color-scheme: light;
+}
+
+body {
+  //background: var(--mat-sys-surface);
+  //color: var(--mat-sys-on-surface);
+}
+
+/* 
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+deep-purple-palette,
+
+}
+*/

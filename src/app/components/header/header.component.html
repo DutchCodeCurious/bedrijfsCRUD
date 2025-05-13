@@ -1,0 +1,49 @@
+<mat-toolbar class="menu-bar">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+    [matMenuTriggerFor]="menu"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item *ngFor="let item of MenuList" [routerLink]="item.url">
+      {{ item.name }}
+    </button>
+  </mat-menu>
+  <span routerLink="/" class="app-name">My App</span>
+
+  <div class="icons-right">
+    <button
+      mat-icon-button
+      class="example-icon favorite-icon"
+      aria-label="Example icon-button with heart icon"
+      [matMenuTriggerFor]="personLog"
+    >
+      <mat-icon>person</mat-icon>
+    </button>
+    <mat-menu #personLog="matMenu" xPosition="before">
+      <button mat-menu-item *ngFor="let item of logList">
+        {{ item.function }}
+      </button>
+    </mat-menu>
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with share icon"
+      [matMenuTriggerFor]="colorPalette"
+    >
+      <mat-icon>palette</mat-icon>
+      <mat-menu #colorPalette="matMenu" xPosition="before">
+        <button
+          mat-menu-item
+          *ngFor="let item of colorList"
+          (click)="setTheme(item)"
+        >
+          {{ item.theme }}
+        </button>
+      </mat-menu>
+    </button>
+  </div>
+</mat-toolbar>

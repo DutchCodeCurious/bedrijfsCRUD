@@ -1,0 +1,18 @@
+@use "@angular/material" as mat;
+
+$cyan-primary: mat.define-palette(mat.$cyan-palette, 500);
+$cyan-accent: mat.define-palette(mat.$orange-palette, A200);
+
+$cyan-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: $cyan-primary,
+      accent: $cyan-accent,
+    ),
+  )
+);
+
+.cyan-orange-theme {
+  @include mat.all-component-themes($cyan-theme);
+}
