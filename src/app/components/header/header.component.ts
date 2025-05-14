@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-//import { ThemeService } from '../../services/theme.service';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +10,18 @@ import { MatSlideToggleChange } from '@angular/material/slide-toggle';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  constructor(@Inject(DOCUMENT) private document: Document) {}
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private dialog: MatDialog
+  ) {}
+
+  openLoginDialog() {
+    this.dialog.open(LoginComponent, {
+      width: '400px',
+      height: '400px',
+      disableClose: true,
+    });
+  }
 
   setTheme(item: { value: string }) {
     this.document.body.className = '';
