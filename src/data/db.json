@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "test@email.com",
+      "password": "123456",
+      "phone": "1234567890",
+      "address": "123 Main St, City, Country"
+    },
+    {
+      "id": "2",
+      "name": "John DoDe",
+      "email": "test1@email.com",
+      "password": "123456",
+      "phone": "1234567890",
+      "address": "123 Main St, City, Country"
+    },
+
+    {
+      "id": "9e6118ca-64d3-4567-8205-e1ed794646bc",
+      "name": "dufipds",
+      "address": "sd;lfjds",
+      "phone": "898989",
+      "email": "jj@mm.nl",
+      "password": "kdjsf09d"
+    }
+  ],
+  "products": [
+    {
+      "id": "0e33"
+    }
+  ],
+  "orders": [
+    {
+      "id": "34cf"
+    }
+  ],
+  "invoices": [
+    {
+      "id": "e0d1"
+    }
+  ]
+}

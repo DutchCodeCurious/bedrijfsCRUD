@@ -1,23 +1,33 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { randomUUID } from 'crypto';
-import { NewUser } from '../modules/user/user.model';
+import { User } from '../Store/model/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  constructor() {}
+  baseurl = 'http://localhost:3000/users';
 
-  addUser(userData: NewUser): void {
-    const user = {
-      id: randomUUID(),
-      name: userData.name,
-      email: userData.email,
-      password: userData.password,
-      phone: userData.phone,
-      address: userData.address,
-    };
+  constructor(private http: HttpClient) {}
+
+  getALL() {
+    return this.http.get<User[]>(this.baseurl);
   }
 
-  private saveUser() {}
+  GetbyCode(id: string) {
+    return this.http.get<User>(`${this.baseurl}/${id}`);
+  }
+
+  Delete(id: number) {
+    return this.http.delete(`${this.baseurl}/${id}`);
+  }
+
+  Update(data: User) {
+    return this.http.put<User>(`${this.baseurl}/${data.id}`, data);
+  }
+
+  Create(data: User) {
+    console.log('Creating User with:', data);
+    return this.http.post<User>(`${this.baseurl}`, data);
+  }
 }

@@ -8,9 +8,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { HttpClientModule } from '@angular/common/http';
+
+//ngrx
+import { StoreModule } from '@ngrx/store';
+import { userReducer } from './Store/Users/user.Reducer';
+import { EffectsModule } from '@ngrx/effects';
 
 //Auth
-import { provideAuth0 } from '@auth0/auth0-angular';
+import { provideAuth0, User } from '@auth0/auth0-angular';
 
 // Angular/Material
 import { MatIconModule } from '@angular/material/icon';
@@ -32,8 +38,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthButtonComponent } from './components/auth-button/auth-button.component';
-import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './reducers';
+import { UserModule } from './modules/user/user.module';
+import { UserEffects } from './Store/Users/User.Effects';
+import { RegisterComponent } from './components/register/register.component';
+import { AppEffects } from './Store/common/App.Effects';
 
 // Modules
 
@@ -44,11 +52,14 @@ import { reducers, metaReducers } from './reducers';
     HeaderComponent,
     LoginComponent,
     AuthButtonComponent,
+    RegisterComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    UserModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
@@ -60,9 +71,10 @@ import { reducers, metaReducers } from './reducers';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers
+    StoreModule.forRoot({
+      user: userReducer,
     }),
+    EffectsModule.forRoot([UserEffects, AppEffects]),
   ],
   providers: [
     //{ provide: APP_ID, useValue: 'my-app' },

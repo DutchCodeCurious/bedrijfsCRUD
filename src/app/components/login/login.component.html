@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Log In</h2>
-<mat-dialog-content> Please enter your email and password </mat-dialog-content>
-<form [formGroup]="profileForm">
+
+<form [formGroup]="loginForm" class="">
   <mat-form-field>
     <mat-label>Email</mat-label>
     <input
@@ -23,13 +23,16 @@
   </mat-form-field>
 </form>
 
-<mat-dialog-content> No account yet?</mat-dialog-content>
+<mat-dialog-content> </mat-dialog-content>
 <mat-dialog-actions>
+  <button mat-button mat-dialog-close (click)="openRegister()">
+    Create Account?
+  </button>
   <button mat-button mat-dialog-close>Cancel</button>
   <button
     mat-button
     mat-dialog-close
-    [disabled]="!profileForm.valid"
+    [disabled]="!loginForm.valid"
     (click)="Login()"
   >
     Login

@@ -3,6 +3,7 @@ import { DOCUMENT } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 import { AuthButtonComponent } from '../auth-button/auth-button.component';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-header',
@@ -17,9 +18,9 @@ export class HeaderComponent {
   ) {}
 
   openLoginDialog() {
-    this.dialog.open(LoginComponent, {
-      width: '400px',
-      height: '400px',
+    this.dialog.open(RegisterComponent, {
+      width: 'auto',
+      height: 'auto',
       disableClose: true,
     });
   }
@@ -31,8 +32,8 @@ export class HeaderComponent {
 
   MenuList = [
     {
-      name: 'Customers',
-      url: '/customers',
+      name: 'Users',
+      url: '/users',
     },
     {
       name: 'Products',
@@ -72,4 +73,3 @@ export class HeaderComponent {
     },
   ];
 }
-//private themeService: ThemeService,

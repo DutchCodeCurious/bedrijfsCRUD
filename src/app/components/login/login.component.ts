@@ -9,6 +9,8 @@ import {
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { merge } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-login',
@@ -18,31 +20,31 @@ import { merge } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
-  profileForm = new FormGroup({
-    name: new FormControl('', Validators.required),
-    address: new FormControl('', Validators.required),
-    phone: new FormControl('', Validators.required),
-    email: new FormControl('', [Validators.required, Validators.email]),
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl('', Validators.required),
-    //confirmPassword: new FormControl('', Validators.required),
   });
 
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
+
+  openRegister() {
+    this.dialog.open(RegisterComponent);
+  }
 
   Login() {
-    if (this.profileForm.controls['email'].valid) {
+    if (this.loginForm.valid) {
       // Handle login logic
-      console.log(this.profileForm);
+      console.log(this.loginForm);
       console.log(
         'Login successful with email:',
-        this.profileForm.controls['email'].value
+        this.loginForm.controls['email'].value
       );
     } else {
       // Handle invalid email case
-      console.log(this.profileForm);
+      console.log(this.loginForm);
       console.log(
         'Login unsuccessful with email:',
-        this.profileForm.controls['email'].value
+        this.loginForm.controls['email'].value
       );
       console.log('Invalid email address');
     }

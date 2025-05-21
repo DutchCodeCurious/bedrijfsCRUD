@@ -1,0 +1,29 @@
+.card {
+  margin: 10px;
+  display: flex;
+  flex-direction: column; // ← zorg dat alles onder elkaar staat
+  justify-content: space-between;
+  height: auto; // optioneel, afhankelijk van context
+}
+
+.card-header {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.card-content {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+  padding-right: 10px;
+  margin-top: 10px; // optioneel
+}
+
+.card-action {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto; // ← duwt dit blok naar onderin de kaart
+}

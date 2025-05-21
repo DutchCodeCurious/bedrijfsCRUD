@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { MatCardModule } from '@angular/material/card';
 
 // Components
 import { UserComponent } from './user/user.component';
@@ -20,6 +21,7 @@ import { UserRoutingModule } from './user-routing.module';
     MatIconModule,
     MatButtonModule,
     MatFormFieldModule,
+    MatCardModule,
   ],
 })
 export class UserModule {}
