@@ -5,9 +5,7 @@ const routes: Routes = [
   {
     path: 'customers',
     loadChildren: () =>
-      import('./modules/customers/customers.module').then(
-        (m) => m.CustomersModule
-      ),
+      import('./modules/user/user.module').then((m) => m.UserModule),
   },
   {
     path: 'invoice',

@@ -8,19 +8,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 
 // Components
-//import { Customer } from './customers.model';
-import { CustomerPageComponent } from './customer-page/customer-page.component';
-import { CustomersRoutingModule } from './customers-routing.module';
+import { UserComponent } from './user/user.component';
+import { UserRoutingModule } from './user-routing.module';
 
 @NgModule({
-  declarations: [CustomerPageComponent],
+  declarations: [UserComponent],
   imports: [
     CommonModule,
-    CustomersRoutingModule,
+    UserRoutingModule,
     MatInputModule,
     MatIconModule,
     MatButtonModule,
     MatFormFieldModule,
   ],
 })
-export class CustomersModule {}
+export class UserModule {}

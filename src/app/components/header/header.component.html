@@ -15,20 +15,16 @@
   <span routerLink="/" class="app-name">My App</span>
 
   <div class="icons-right">
+    <app-auth-button></app-auth-button>
     <button
       mat-icon-button
       class="example-icon favorite-icon"
       aria-label="Example icon-button with heart icon"
-      [matMenuTriggerFor]="personLog"
       (click)="openLoginDialog()"
     >
       <mat-icon>person</mat-icon>
     </button>
-    <mat-menu #personLog="matMenu" xPosition="before">
-      <button mat-menu-item *ngFor="let item of logList">
-        {{ item.function }}
-      </button>
-    </mat-menu>
+
     <button
       mat-icon-button
       class="example-icon"
@@ -48,3 +44,19 @@
     </button>
   </div>
 </mat-toolbar>
+
+<!-- 
+
+staat bij de button
+[matMenuTriggerFor]="personLog"
+
+
+staat onder de button 
+      <mat-menu #personLog="matMenu" xPosition="before">
+      <button mat-menu-item *ngFor="let item of logList">
+        {{ item.function }}
+      </button>
+    </mat-menu>
+  
+  
+  -->

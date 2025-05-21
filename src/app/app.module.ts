@@ -31,6 +31,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
+import { AuthButtonComponent } from './components/auth-button/auth-button.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
 
 // Modules
 
@@ -40,6 +43,7 @@ import { LoginComponent } from './components/login/login.component';
     DashboardComponent,
     HeaderComponent,
     LoginComponent,
+    AuthButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,14 +60,20 @@ import { LoginComponent } from './components/login/login.component';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    StoreModule.forRoot(reducers, {
+      metaReducers
+    }),
   ],
   providers: [
     //{ provide: APP_ID, useValue: 'my-app' },
     provideClientHydration(),
     provideAnimationsAsync(),
     provideAuth0({
-      domain: 'dev-1j2g3h4i5j6k7l8m9n0o.auth0.com',
-      clientId: 'your-client-id',
+      domain: 'dev-nsc7dienu8o1ta8a.us.auth0.com',
+      clientId: 'NTbUDXfC1Nyaqdw0HPim8yawKZ7E5NP5',
+      authorizationParams: {
+        redirect_uri: 'localhost:4200',
+      },
     }),
   ],
   bootstrap: [AppComponent],

@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
+import { AuthButtonComponent } from '../auth-button/auth-button.component';
 
 @Component({
   selector: 'app-header',

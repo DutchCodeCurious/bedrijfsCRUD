@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   FormControl,
-  FormsModule,
+  FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -18,19 +18,53 @@ import { merge } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
-  readonly email = new FormControl('', [Validators.required, Validators.email]);
-  readonly password = new FormControl('', [Validators.required]);
+  profileForm = new FormGroup({
+    name: new FormControl('', Validators.required),
+    address: new FormControl('', Validators.required),
+    phone: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required),
+    //confirmPassword: new FormControl('', Validators.required),
+  });
 
-  errorMessage: string = '';
+  constructor() {}
 
-  constructor() {
-    // Constructor logic can be added here if needed
-    merge(this.email.statusChanges, this.email.valueChanges).subscribe(() => {
-      this.updateErrorMessage();
-    });
+  Login() {
+    if (this.profileForm.controls['email'].valid) {
+      // Handle login logic
+      console.log(this.profileForm);
+      console.log(
+        'Login successful with email:',
+        this.profileForm.controls['email'].value
+      );
+    } else {
+      // Handle invalid email case
+      console.log(this.profileForm);
+      console.log(
+        'Login unsuccessful with email:',
+        this.profileForm.controls['email'].value
+      );
+      console.log('Invalid email address');
+    }
   }
+}
+/* 
 
-  updateErrorMessage() {
+
+confirmPassword: new FormControl('', Validators.required),
+    
+
+
+   <mat-error *ngIf="email.invalid && (email.dirty || email.touched)">
+    <mat-icon>error</mat-icon>
+    <span *ngIf="email.errors?.['required']">Email is required</span>
+    <span *ngIf="email.errors?.['email']">Invalid email format</span>
+  </mat-error>
+ 
+
+
+
+    updateErrorMessage() {
     if (this.email.hasError('required')) {
       this.errorMessage = 'You must enter a value';
     } else if (this.email.hasError('email')) {
@@ -40,19 +74,7 @@ export class LoginComponent {
     }
   }
 
-  // You can add methods and properties for the login functionality here
-  onLogin() {
-    if (this.email.valid) {
-      // Handle login logic
-      console.log('Login successful with email:', this.email.value);
-    } else {
-      // Handle invalid email case
-      console.log('Invalid email address');
-    }
-  }
 
-  onCancel() {
-    // Handle cancel logic
-    console.log('Cancel button clicked');
-  }
-}
+
+
+*/

@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/core": "^19.2.12",
     "@angular/animations": "^19.2.8",
     "@angular/cdk": "^19.2.11",
     "@angular/common": "^19.2.8",
@@ -24,6 +25,7 @@
     "@angular/router": "^19.2.8",
     "@angular/ssr": "^19.2.9",
     "@auth0/auth0-angular": "^2.2.3",
+    "@ngrx/store": "^19.2.0",
     "express": "^4.21.2",
     "express-openid-connect": "^2.18.1",
     "rxjs": "~7.8.0",
