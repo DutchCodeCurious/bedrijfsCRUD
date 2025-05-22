@@ -1,6 +1,13 @@
 import { createReducer, on } from '@ngrx/store';
 import { UserState } from './User.State';
-import { addUserSuccess, loadUserSuccess } from './User.Actions';
+import {
+  addUserSuccess,
+  deleteUserSuccess,
+  getUser,
+  getUserSuccess,
+  loadUserSuccess,
+  resetUser,
+} from './User.Actions';
 
 const _UserReducer = createReducer(
   UserState,
@@ -14,13 +21,31 @@ const _UserReducer = createReducer(
 
   on(addUserSuccess, (state, action) => {
     const _newdata = { ...action.inputdata };
-    _newdata.id = (state.list.length + 1).toString();
     return {
       ...state,
       list: [...state.list, _newdata],
       errormessage: '',
     };
-  })
+  }),
+
+  on(getUserSuccess, (state, action) => {
+    return {
+      ...state,
+      userobj: action.obj,
+      errormessage: '',
+    };
+  }),
+  on(deleteUserSuccess, (state, action) => {
+    const _newdata = state.list.filter((o) => o.id !== action.code);
+
+    return {
+      ...state,
+      list: _newdata,
+      errormessage: '',
+    };
+  }),
+
+  on(resetUser, (state) => ({ ...state, user: null }))
 );
 
 export function userReducer(state: any, action: any) {

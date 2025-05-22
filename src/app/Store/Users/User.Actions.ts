@@ -11,6 +11,14 @@ export const ADD_USER_SUCCESS = '[User] Add User Success';
 export const GET_USER = '[User] Get User';
 export const GET_USER_SUCCESS = '[User] Get User Success';
 
+export const UPDATE_USER = '[User] Update User';
+export const UPDATE_USER_SUCCESS = '[User] Update User Success';
+
+export const DELETE_USER = '[User] Deleted User';
+export const DELETE_USER_SUCCESS = '[User] Deleted User Success';
+
+export const RESET_USER = '[User] Reset User';
+
 //LOAD
 export const loadUser = createAction(LOAD_USER);
 export const loadUserSuccess = createAction(
@@ -37,5 +45,21 @@ export const addUserSuccess = createAction(
 );
 
 //UPDATE
+export const updateUser = createAction(
+  UPDATE_USER,
+  props<{ inputdata: User }>()
+);
+export const updateUserSuccess = createAction(
+  UPDATE_USER_SUCCESS,
+  props<{ inputdata: User }>()
+);
 
 //DELETE
+export const deleteUser = createAction(DELETE_USER, props<{ code: string }>());
+export const deleteUserSuccess = createAction(
+  DELETE_USER_SUCCESS,
+  props<{ code: string }>()
+);
+
+//RESET
+export const resetUser = createAction(RESET_USER);

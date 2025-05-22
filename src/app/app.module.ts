@@ -8,7 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withFetch } from '@angular/common/http';
 
 //ngrx
 import { StoreModule } from '@ngrx/store';
@@ -16,7 +16,7 @@ import { userReducer } from './Store/Users/user.Reducer';
 import { EffectsModule } from '@ngrx/effects';
 
 //Auth
-import { provideAuth0, User } from '@auth0/auth0-angular';
+import { provideAuth0 } from '@auth0/auth0-angular';
 
 // Angular/Material
 import { MatIconModule } from '@angular/material/icon';
@@ -42,6 +42,9 @@ import { UserModule } from './modules/user/user.module';
 import { UserEffects } from './Store/Users/User.Effects';
 import { RegisterComponent } from './components/register/register.component';
 import { AppEffects } from './Store/common/App.Effects';
+import { productReducer } from './Store/Products/Product.Reducer';
+import { ProductEffects } from './Store/Products/Product.Effects';
+import { ProductsModule } from './modules/products/products.module';
 
 // Modules
 
@@ -55,11 +58,11 @@ import { AppEffects } from './Store/common/App.Effects';
     RegisterComponent,
   ],
   imports: [
-    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     UserModule,
+    ProductsModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
@@ -73,11 +76,13 @@ import { AppEffects } from './Store/common/App.Effects';
     MatInputModule,
     StoreModule.forRoot({
       user: userReducer,
+      product: productReducer,
     }),
-    EffectsModule.forRoot([UserEffects, AppEffects]),
+    EffectsModule.forRoot([UserEffects, AppEffects, ProductEffects]),
   ],
   providers: [
     //{ provide: APP_ID, useValue: 'my-app' },
+    provideHttpClient(withFetch()),
     provideClientHydration(),
     provideAnimationsAsync(),
     provideAuth0({

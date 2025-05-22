@@ -10,20 +10,18 @@
       placeholder="Search by name"
     />
   </mat-form-field>
-  <button mat-button (click)="addFunction()">Add Product</button>
 </mat-toolbar>
-<mat-card *ngFor="let product of filteredProducts" class="card">
+<mat-card *ngFor="let user of filteredUsers" class="card">
   <mat-card-header class="card-header">
-    <mat-card-title>Product: {{ product.name }}</mat-card-title>
+    <mat-card-title>User</mat-card-title>
     <mat-card-subtitle>Details</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content class="card-content">
-    <p>{{ product.description }}</p>
-    <p>Price: {{ product.price }}</p>
+    <p>{{ user.name }}</p>
   </mat-card-content>
   <mat-card-actions class="card-actions">
-    <button mat-button (click)="FunctionLog(product)">Detail page</button>
-    <button mat-button (click)="FunctionDelete(product)">Delete</button>
-    <button mat-button (click)="FunctionUpdate(product)">Update</button>
+    <button mat-button (click)="FunctionLog(user)">Detail page</button>
+    <button mat-button (click)="FunctionDelete(user.id)">Delete</button>
+    <button mat-button (click)="FunctionUpdate(user)">Update</button>
   </mat-card-actions>
 </mat-card>

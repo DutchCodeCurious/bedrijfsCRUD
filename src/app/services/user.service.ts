@@ -18,7 +18,7 @@ export class UserService {
     return this.http.get<User>(`${this.baseurl}/${id}`);
   }
 
-  Delete(id: number) {
+  Delete(id: string) {
     return this.http.delete(`${this.baseurl}/${id}`);
   }
 
@@ -27,7 +27,6 @@ export class UserService {
   }
 
   Create(data: User) {
-    console.log('Creating User with:', data);
     return this.http.post<User>(`${this.baseurl}`, data);
   }
 }

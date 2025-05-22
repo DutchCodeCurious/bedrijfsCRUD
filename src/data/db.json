@@ -2,33 +2,69 @@
   "users": [
     {
       "id": "1",
-      "name": "John Doe",
+      "name": "John Deed doet",
+      "address": "123 Main St, City, Country",
+      "phone": "1234567890",
       "email": "test@email.com",
-      "password": "123456",
-      "phone": "1234567890",
-      "address": "123 Main St, City, Country"
+      "password": "123456"
     },
     {
-      "id": "2",
-      "name": "John DoDe",
-      "email": "test1@email.com",
-      "password": "123456",
-      "phone": "1234567890",
-      "address": "123 Main St, City, Country"
+      "id": "a11db2eb-e624-4b9c-9440-35b77baa29de",
+      "name": "Joppe Petit dit de la Roche",
+      "address": "woudestien 3",
+      "phone": "068787877",
+      "email": "Joppe@gmail.com",
+      "password": "-0890lkj"
     },
-
     {
-      "id": "9e6118ca-64d3-4567-8205-e1ed794646bc",
-      "name": "dufipds",
-      "address": "sd;lfjds",
-      "phone": "898989",
-      "email": "jj@mm.nl",
-      "password": "kdjsf09d"
+      "id": "24ce0169-b8c7-44aa-8314-1ecf93c3a757",
+      "name": "Andree",
+      "address": "dsiofj",
+      "phone": "09890890",
+      "email": "Andree@gmail.com",
+      "password": "dsakfjiodsjf"
+    },
+    {
+      "id": "b4014fdd-0f65-4095-a352-724a87a71a15",
+      "name": "baasB",
+      "address": "eioufias",
+      "phone": "098908",
+      "email": "BaasB@gmail.com",
+      "password": "09dslkhf"
+    },
+    {
+      "id": "0c98d4bb-e5de-4aaf-ab24-3cce0387bacf",
+      "name": "NEW ID CHECK",
+      "address": "dsfdsfgsd",
+      "phone": "324353545623",
+      "email": "a@mail.nl",
+      "password": "frtc4 t4"
     }
   ],
   "products": [
     {
-      "id": "0e33"
+      "id": "0",
+      "name": "Product One",
+      "description": "Product One with Text",
+      "price": 105
+    },
+    {
+      "id": "1",
+      "name": "Product Two",
+      "description": "Product Two with Text",
+      "price": 99
+    },
+    {
+      "id": "650176c9-a0f9-41dd-bef6-5115bfaac260",
+      "name": "Product three",
+      "description": "three product",
+      "price": 210
+    },
+    {
+      "id": "e5189381-069a-413f-9298-4a5b4b7d646e",
+      "name": "Product three",
+      "description": "three product",
+      "price": 120
     }
   ],
   "orders": [

@@ -1,8 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { UserModel } from '../model/user.model';
-import { Certificate } from 'crypto';
-import { create } from 'domain';
-import { get } from 'http';
 
 const getuserstate = createFeatureSelector<UserModel>('user');
 
@@ -14,3 +11,11 @@ export const getUserlist = createSelector(
 export const getuser = createSelector(getuserstate, (state) => {
   return state?.userobj;
 });
+
+//TEST
+export const selectUsersByName = (name: string) =>
+  createSelector(getuserstate, (state) =>
+    state.list.filter((user: any) =>
+      user.name.toLowerCase().includes(name.toLowerCase())
+    )
+  );

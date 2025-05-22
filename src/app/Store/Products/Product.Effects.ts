@@ -1,48 +1,60 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import {
-  addUser,
-  addUserSuccess,
-  getUser,
-  getUserSuccess,
-  loadUser,
-  loadUserFail,
-  loadUserSuccess,
-  updateUser,
-  updateUserSuccess,
-  deleteUser,
-  deleteUserSuccess,
-} from './User.Actions';
-import { catchError, exhaustMap, map, of, switchMap } from 'rxjs';
-import { UserService } from '../../services/user.service';
+  catchError,
+  exhaustMap,
+  map,
+  of,
+  switchMap,
+  withLatestFrom,
+} from 'rxjs';
 import { showalert } from '../common/App.Actions';
+import { ProductService } from '../../services/product.service';
+import {
+  addProduct,
+  addProductSuccess,
+  deleteProduct,
+  deleteProductSuccess,
+  getProduct,
+  getProductSuccess,
+  loadProduct,
+  loadProductFail,
+  loadProductSuccess,
+  updateProduct,
+  updateProductSuccess,
+} from './Product.Actions';
+import { Store } from '@ngrx/store';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
-export class UserEffects {
-  constructor(private action$: Actions, private service: UserService) {}
+export class ProductEffects {
+  constructor(
+    private action$: Actions,
+    private service: ProductService,
+    private store: Store
+  ) {}
 
-  loaduser$ = createEffect(() =>
+  loadProduct$ = createEffect(() =>
     this.action$.pipe(
-      ofType(loadUser),
+      ofType(loadProduct),
       exhaustMap((action) => {
         return this.service.getALL().pipe(
           map((data) => {
-            return loadUserSuccess({ list: data });
+            return loadProductSuccess({ list: data });
           }),
-          catchError((error) => of(loadUserFail({ error: error.message })))
+          catchError((error) => of(loadProductFail({ error: error.message })))
         );
       })
     )
   );
 
-  getUser$ = createEffect(() =>
+  getProduct$ = createEffect(() =>
     this.action$.pipe(
-      ofType(getUser),
+      ofType(getProduct),
       exhaustMap((action) => {
         return this.service.GetbyCode(action.id).pipe(
           map((data) => {
-            return getUserSuccess({ obj: data });
+            return getProductSuccess({ obj: data });
           }),
           catchError((_error) =>
             of(
@@ -56,16 +68,15 @@ export class UserEffects {
       })
     )
   );
-
-  adduser$ = createEffect(() =>
+  addProduct$ = createEffect(() =>
     this.action$.pipe(
-      ofType(addUser),
+      ofType(addProduct),
       exhaustMap((action) => {
         const userWithId = { ...action.inputdata, id: uuidv4() };
         return this.service.Create(userWithId).pipe(
           switchMap((data) => {
             return of(
-              addUserSuccess({ inputdata: action.inputdata }),
+              addProductSuccess({ inputdata: action.inputdata }),
               showalert({
                 message: 'Created successfully ',
                 resulttype: 'pass',
@@ -77,7 +88,7 @@ export class UserEffects {
       catchError((error) =>
         of(
           showalert({
-            message: 'Failed to create user',
+            message: 'Failed to create product',
             resulttype: 'fail',
           })
         )
@@ -85,14 +96,14 @@ export class UserEffects {
     )
   );
 
-  deleteUser$ = createEffect(() =>
+  deleteProduct$ = createEffect(() =>
     this.action$.pipe(
-      ofType(deleteUser),
+      ofType(deleteProduct),
       switchMap((action) => {
         return this.service.Delete(action.code).pipe(
           switchMap((data) => {
             return of(
-              deleteUserSuccess({ code: action.code }),
+              deleteProductSuccess({ code: action.code }),
               showalert({
                 message: 'Deleted successfully ',
                 resulttype: 'pass',
@@ -102,7 +113,7 @@ export class UserEffects {
           catchError((_error) =>
             of(
               showalert({
-                message: 'Failed to Delete user',
+                message: 'Failed to Delete product',
                 resulttype: 'fail',
               })
             )
@@ -111,26 +122,25 @@ export class UserEffects {
       })
     )
   );
-
   updateUser$ = createEffect(() =>
     this.action$.pipe(
-      ofType(updateUser),
+      ofType(updateProduct),
       switchMap((action) => {
         return this.service.Update(action.inputdata).pipe(
           switchMap((data) => {
             return of(
-              updateUserSuccess({ inputdata: action.inputdata }),
+              updateProductSuccess({ inputdata: action.inputdata }),
               showalert({
                 message: 'Updated successfully ',
                 resulttype: 'pass',
               }),
-              loadUser()
+              loadProduct()
             );
           }),
           catchError((_error) =>
             of(
               showalert({
-                message: 'Updated to Delete user',
+                message: 'Updated to Delete Product',
                 resulttype: 'fail',
               })
             )
