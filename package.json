@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:bedrijfsCRUD": "node dist/bedrijfs-crud/server/server.mjs"
+    "serve:ssr:bedrijfsCRUD": "node dist/bedrijfs-crud/server/server.mjs",
+    "start:api": "node src/data/server.js"
   },
   "private": true,
   "dependencies": {
@@ -24,16 +25,19 @@
     "@angular/platform-server": "^19.2.8",
     "@angular/router": "^19.2.8",
     "@angular/ssr": "^19.2.9",
+    "@auth0/angular-jwt": "^5.2.0",
     "@auth0/auth0-angular": "^2.2.3",
     "@ngrx/effects": "^19.2.0",
     "@ngrx/store": "^19.2.0",
     "express": "^4.21.2",
     "express-openid-connect": "^2.18.1",
-    "json-server": "^1.0.0-beta.3",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "uuid": "^11.1.0",
-    "zone.js": "~0.15.0"
+    "zone.js": "~0.15.0",
+    "json-server": "^0.17.1",
+    "jsonwebtoken": "^9.0.0",
+    "body-parser": "^1.20.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.2.9",

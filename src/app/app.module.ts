@@ -8,7 +8,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withFetch,
+} from '@angular/common/http';
 
 //ngrx
 import { StoreModule } from '@ngrx/store';
@@ -36,8 +40,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 // Components
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './components/header/header.component';
-import { LoginComponent } from './components/login/login.component';
-import { AuthButtonComponent } from './components/auth-button/auth-button.component';
 import { UserModule } from './modules/user/user.module';
 import { UserEffects } from './Store/Users/User.Effects';
 import { RegisterComponent } from './components/register/register.component';
@@ -45,6 +47,13 @@ import { AppEffects } from './Store/common/App.Effects';
 import { productReducer } from './Store/Products/Product.Reducer';
 import { ProductEffects } from './Store/Products/Product.Effects';
 import { ProductsModule } from './modules/products/products.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { AuthInterceptor } from './modules/auth/auth.Interceptor';
+import { authReducer } from './modules/auth/state/auth.Reducer';
+import { AuthEffects } from './modules/auth/state/auth.Effects';
+import { orderReducer } from './Store/order/order.Reducer';
+import { OrderModule } from './modules/order/order.module';
+import { OrderEffects } from './Store/order/order.Effect';
 
 // Modules
 
@@ -53,8 +62,6 @@ import { ProductsModule } from './modules/products/products.module';
     AppComponent,
     DashboardComponent,
     HeaderComponent,
-    LoginComponent,
-    AuthButtonComponent,
     RegisterComponent,
   ],
   imports: [
@@ -62,6 +69,8 @@ import { ProductsModule } from './modules/products/products.module';
     AppRoutingModule,
     ReactiveFormsModule,
     UserModule,
+    OrderModule,
+    AuthModule,
     ProductsModule,
     MatToolbarModule,
     MatButtonModule,
@@ -77,8 +86,16 @@ import { ProductsModule } from './modules/products/products.module';
     StoreModule.forRoot({
       user: userReducer,
       product: productReducer,
+      auth: authReducer,
+      order: orderReducer,
     }),
-    EffectsModule.forRoot([UserEffects, AppEffects, ProductEffects]),
+    EffectsModule.forRoot([
+      UserEffects,
+      AppEffects,
+      ProductEffects,
+      AuthEffects,
+      OrderEffects,
+    ]),
   ],
   providers: [
     //{ provide: APP_ID, useValue: 'my-app' },
@@ -92,6 +109,7 @@ import { ProductsModule } from './modules/products/products.module';
         redirect_uri: 'localhost:4200',
       },
     }),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

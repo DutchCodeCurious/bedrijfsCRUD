@@ -1,0 +1,31 @@
+<button
+  mat-icon-button
+  [matMenuTriggerFor]="cartMenu"
+  #menuTrigger="matMenuTrigger"
+  (mouseenter)="openDelayed()"
+  (mouseleave)="closeDelayed()"
+>
+  <mat-icon (click)="goToOrder()">shopping_cart</mat-icon>
+</button>
+<mat-menu
+  #cartMenu="matMenu"
+  yPosition="below"
+  xPosition="after"
+  (mouseenter)="openDelayed()"
+  (mouseleave)="closeDelayed()"
+  class="cart-menu"
+>
+  <ng-container *ngIf="items$ | async as items; else empty">
+    <mat-nav-list>
+      <mat-list-item *ngFor="let item of items">
+        {{ item.product.name }} — €{{ item.product.price }} ×
+        {{ item.quantity }}
+      </mat-list-item>
+    </mat-nav-list>
+    <mat-divider></mat-divider>
+    <div class="cart-total">Totaal: €{{ total$ | async }}</div>
+  </ng-container>
+  <ng-template #empty>
+    <div class="cart-empty">Winkelmand is leeg</div>
+  </ng-template>
+</mat-menu>

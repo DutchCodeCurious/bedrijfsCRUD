@@ -1,9 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
-import { LoginComponent } from '../login/login.component';
-import { AuthButtonComponent } from '../auth-button/auth-button.component';
-import { RegisterComponent } from '../register/register.component';
+import { selectUser } from '../../modules/auth/state/auth.Selectors';
+import { Store } from '@ngrx/store';
+import * as AuthActions from '../../modules/auth/state/auth.Actions';
+import { LoginComponent } from '../../modules/auth/login/login.component';
 
 @Component({
   selector: 'app-header',
@@ -14,11 +15,17 @@ import { RegisterComponent } from '../register/register.component';
 export class HeaderComponent {
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private store: Store
   ) {}
+  user$ = this.store.select(selectUser);
+
+  onLogout() {
+    this.store.dispatch(AuthActions.logout());
+  }
 
   openLoginDialog() {
-    this.dialog.open(RegisterComponent, {
+    this.dialog.open(LoginComponent, {
       width: 'auto',
       height: 'auto',
       disableClose: true,

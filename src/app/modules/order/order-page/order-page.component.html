@@ -1,1 +1,33 @@
-<p>order-page works!</p>
+<div class="order">
+  <mat-card class="card">
+    <mat-card-header>
+      <mat-card-title>Bestelling</mat-card-title>
+      <mat-card-subtitle *ngIf="user$ | async as user">
+        Welkom, {{ user.name }}!
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-list>
+      <mat-list-item *ngFor="let item of items$ | async">
+        {{ item.product.name }}— €{{ item.product.price * item.quantity }}
+
+        <button mat-icon-button (click)="onRemove(item.product.id)">
+          <mat-icon>remove</mat-icon>
+        </button>
+        <button mat-icon-button (click)="onAdd(item.product)">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-list-item>
+      <div *ngIf="(items$ | async)?.length != 0" class="total">
+        Totaal: €{{ total$ | async }}
+      </div>
+    </mat-list>
+    <div *ngIf="(items$ | async)?.length === 0">Winkelmand is leeg</div>
+
+    <mat-card-actions>
+      <app-order-check-out></app-order-check-out>
+      <button mat-button (click)="placeOrder()">Afrekenen</button>
+      <button mat-button (click)="emptyCart()">Winkelmand legen</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

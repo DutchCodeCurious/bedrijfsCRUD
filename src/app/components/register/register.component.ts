@@ -1,17 +1,9 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import {
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { merge } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { LoginComponent } from '../login/login.component';
+import { LoginComponent } from '../../modules/auth/login/login.component';
 import { MatDialog } from '@angular/material/dialog';
 import { User } from '../../Store/model/user.model';
 import { addUser } from '../../Store/Users/User.Actions';

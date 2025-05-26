@@ -9,6 +9,7 @@ import {
 import { getProductlist } from '../../../Store/Products/Product.Selector';
 import { ProductDialogFormComponent } from '../product-dialog-form/product-dialog-form.component';
 import { product } from '../product.model';
+import { CartService } from '../../../services/cart.service';
 
 @Component({
   selector: 'app-products-page',
@@ -20,7 +21,11 @@ export class ProductsPageComponent implements OnInit {
   searchTerm: string = '';
   products!: Product[];
   filteredProducts: Product[] = [];
-  constructor(private store: Store, private dialog: MatDialog) {}
+  constructor(
+    private store: Store,
+    private dialog: MatDialog,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.store.dispatch(loadProduct());
@@ -39,6 +44,11 @@ export class ProductsPageComponent implements OnInit {
         product.name.toLowerCase().includes(term)
       );
     }
+  }
+
+  addToCart(product: Product) {
+    console.log('add to cart', product);
+    this.cartService.add(product);
   }
 
   addFunction() {

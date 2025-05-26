@@ -1,13 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import {
-  catchError,
-  exhaustMap,
-  map,
-  of,
-  switchMap,
-  withLatestFrom,
-} from 'rxjs';
+import { catchError, exhaustMap, map, of, switchMap } from 'rxjs';
 import { showalert } from '../common/App.Actions';
 import { ProductService } from '../../services/product.service';
 import {

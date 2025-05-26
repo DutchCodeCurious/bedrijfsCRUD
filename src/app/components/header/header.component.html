@@ -1,10 +1,5 @@
 <mat-toolbar class="menu-bar">
-  <button
-    mat-icon-button
-    class="example-icon"
-    aria-label="Example icon-button with menu icon"
-    [matMenuTriggerFor]="menu"
-  >
+  <button mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon>menu</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
@@ -15,21 +10,11 @@
   <span routerLink="/" class="app-name">My App</span>
 
   <div class="icons-right">
-    <button
-      mat-icon-button
-      class="example-icon favorite-icon"
-      aria-label="Example icon-button with heart icon"
-      (click)="openLoginDialog()"
-    >
+    <button mat-icon-button (click)="openLoginDialog()">
       <mat-icon>person</mat-icon>
     </button>
 
-    <button
-      mat-icon-button
-      class="example-icon"
-      aria-label="Example icon-button with share icon"
-      [matMenuTriggerFor]="colorPalette"
-    >
+    <button mat-icon-button [matMenuTriggerFor]="colorPalette">
       <mat-icon>palette</mat-icon>
       <mat-menu #colorPalette="matMenu" xPosition="before">
         <button
@@ -41,23 +26,14 @@
         </button>
       </mat-menu>
     </button>
+    <button mat-icon-button *ngIf="user$ | async as user" (click)="onLogout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+    <button mat-icon-button routerLink="/order">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+    <!--
+    <app-cart-preview></app-cart-preview>
+    -->
   </div>
 </mat-toolbar>
-
-<!-- 
-
-<app-auth-button></app-auth-button>
-
-staat bij de button
-[matMenuTriggerFor]="personLog"
-
-
-staat onder de button 
-      <mat-menu #personLog="matMenu" xPosition="before">
-      <button mat-menu-item *ngFor="let item of logList">
-        {{ item.function }}
-      </button>
-    </mat-menu>
-  
-  
-  -->

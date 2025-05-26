@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import { OrderState } from './order.state';
-import { createOrderFail, createOrderSuccess } from './order.actions';
+import { OrderState } from './order.State';
+import { createOrderFail, createOrderSuccess } from './order.Actions';
 
 const initialState: OrderState = {
   orders: [],

@@ -39,6 +39,14 @@
       "phone": "324353545623",
       "email": "a@mail.nl",
       "password": "frtc4 t4"
+    },
+    {
+      "id": "11632d3b-37d1-4423-a1d3-25f18b89bf7b",
+      "name": "Joppe",
+      "address": "qoudew",
+      "phone": "099089890",
+      "email": "J@gmail.com",
+      "password": "12"
     }
   ],
   "products": [
@@ -70,6 +78,32 @@
   "orders": [
     {
       "id": "34cf"
+    },
+    {
+      "id": "e98a2e89-ee44-41dc-8aa4-15646b101839",
+      "userId": "11632d3b-37d1-4423-a1d3-25f18b89bf7b",
+      "products": [
+        {
+          "productId": "1",
+          "name": "Product Two",
+          "price": 99,
+          "quantity": 1
+        },
+        {
+          "productId": "0",
+          "name": "Product One",
+          "price": 105,
+          "quantity": 1
+        },
+        {
+          "productId": "650176c9-a0f9-41dd-bef6-5115bfaac260",
+          "name": "Product three",
+          "price": 210,
+          "quantity": 2
+        }
+      ],
+      "totalAmount": 624,
+      "payed": false
     }
   ],
   "invoices": [

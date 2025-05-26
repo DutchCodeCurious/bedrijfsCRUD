@@ -4,3 +4,8 @@ export interface OrderState {
   orders: Order[];
   error: string | null;
 }
+
+export const initialOrderState: OrderState = {
+  orders: [],
+  error: null,
+};

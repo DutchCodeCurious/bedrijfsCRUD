@@ -2,6 +2,9 @@
   <mat-card class="card">
     <mat-card-header class="card-header">
       <mat-card-title>Dashboard</mat-card-title>
+      <mat-card-subtitle *ngIf="user$ | async as user">
+        Welkom, {{ user.name }}!
+      </mat-card-subtitle>
       <mat-card-subtitle>Subtitle</mat-card-subtitle>
 
       <mat-card-subtitle>
